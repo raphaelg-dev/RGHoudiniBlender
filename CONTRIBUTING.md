@@ -2,7 +2,7 @@
 
 How to build, test and change RG Houdini Bridge. How the code is laid out, and where to add something, is in [DEVELOPMENT.md](DEVELOPMENT.md).
 
-Issues are open for bugs: the form asks for the versions, the steps and the content of *Show Log*. Pull requests are read, but nothing guarantees they will be merged: the project is made to be forked.
+Contributions are welcome. Report a bug with the issue form: it asks for the versions, the steps and the content of *Show Log*. Ideas go in a blank issue. For a pull request, keep it to one change, and run the suites below that it touches before you open it.
 
 ## Requirements
 

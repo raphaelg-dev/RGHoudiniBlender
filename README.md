@@ -11,7 +11,7 @@ Use Houdini's nodes and your HDAs in Blender as live, non-destructive modifiers.
 An **HDA** is a Houdini tool packaged as a file.
 **Cooking** is Houdini computing a tool's result.
 
-**Project status.** This is a personal experiment that I use as a base for my own projects. Forks are welcome and encouraged. I don't plan long-term development: I will probably just keep it working with each Blender update, and I don't expect to take it much further than it is today. If you want to fork it, start with [DEVELOPMENT.md](DEVELOPMENT.md) and [CONTRIBUTING.md](CONTRIBUTING.md). Issues are open for bugs. Pull requests are read, but nothing guarantees they will be merged: the project is made to be forked.
+**Project status.** I started this as a personal project for my own work, and it is now open source under the GPL-3.0. If you feel like helping to improve it, don't hesitate: bug reports, ideas, pull requests and forks are all welcome. To find your way in the code, start with [DEVELOPMENT.md](DEVELOPMENT.md), then [CONTRIBUTING.md](CONTRIBUTING.md) for building and running the tests.
 
 ## How it works
 

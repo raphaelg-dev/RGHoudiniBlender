@@ -1,5 +1,5 @@
 name: Bug report
-description: Something the extension does wrong. Pull requests are read, but nothing guarantees they will be merged.
+description: Something the extension does wrong.
 labels: [bug]
 body:
   - type: input
