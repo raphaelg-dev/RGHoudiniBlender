@@ -1,0 +1,512 @@
+{
+ "animated": {
+  "frames": {
+   "1": [
+    0.20000000298023224
+   ],
+   "10": [
+    1.2000000476837158
+   ]
+  },
+  "modifier": "Rock",
+  "object": "Rock and Groups",
+  "parm": "height"
+ },
+ "cached": {
+  "frames": [
+   1,
+   4
+  ],
+  "object": "Cached Waves",
+  "points": 400
+ },
+ "frame": 1,
+ "objects": {
+  "Cached Waves": {
+   "groups": [],
+   "modifiers": [
+    {
+     "cache": {
+      "first": 1,
+      "frames": 4
+     },
+     "hda": {
+      "label": "Bridge Animated",
+      "name": "Waves",
+      "node_type": "bridge::animated",
+      "path": "//../hda/bridge_test.hda"
+     },
+     "inputs": [],
+     "parms": [
+      [
+       "speed",
+       "float"
+      ]
+     ],
+     "result": {
+      "faces": 361,
+      "points": 400
+     },
+     "settings": {
+      "cache_end": 100,
+      "cache_first": 1,
+      "cache_scene_range": true,
+      "cache_start": 1,
+      "instance_display": "AUTO",
+      "live": true,
+      "output_mode": "NATIVE",
+      "time_dependent": true,
+      "use_cache": true,
+      "visualize": "NONE"
+     },
+     "streams": {},
+     "values": {
+      "speed": [
+       2.0
+      ]
+     }
+    }
+   ],
+   "type": "MESH"
+  },
+  "Ramps": {
+   "groups": [],
+   "modifiers": [
+    {
+     "cache": null,
+     "hda": {
+      "label": "Bridge Ramps",
+      "name": "Ramps",
+      "node_type": "bridge::ramps",
+      "path": "//../hda/bridge_test.hda"
+     },
+     "inputs": [
+      {
+       "is_self": true,
+       "label": "Input 1",
+       "object": null
+      }
+     ],
+     "parms": [
+      [
+       "shape",
+       "ramp"
+      ],
+      [
+       "bumps",
+       "int"
+      ],
+      [
+       "enable1",
+       "toggle"
+      ],
+      [
+       "center1",
+       "float"
+      ],
+      [
+       "radius1",
+       "float"
+      ],
+      [
+       "bump_height1",
+       "float"
+      ],
+      [
+       "rings1",
+       "int"
+      ],
+      [
+       "enable2",
+       "toggle"
+      ],
+      [
+       "center2",
+       "float"
+      ],
+      [
+       "radius2",
+       "float"
+      ],
+      [
+       "bump_height2",
+       "float"
+      ],
+      [
+       "rings2",
+       "int"
+      ],
+      [
+       "tint",
+       "ramp"
+      ],
+      [
+       "height",
+       "float"
+      ]
+     ],
+     "result": {
+      "faces": 100,
+      "points": 121
+     },
+     "settings": {
+      "cache_end": 100,
+      "cache_first": 0,
+      "cache_scene_range": true,
+      "cache_start": 1,
+      "instance_display": "AUTO",
+      "live": true,
+      "output_mode": "NATIVE",
+      "time_dependent": false,
+      "use_cache": false,
+      "visualize": "NONE"
+     },
+     "streams": {},
+     "values": {
+      "bump_height1": [
+       0.5
+      ],
+      "bump_height2": [
+       0.5
+      ],
+      "bumps": [
+       2
+      ],
+      "center1": [
+       0.3,
+       0.0,
+       0.2
+      ],
+      "center2": [
+       0.0,
+       0.0,
+       0.0
+      ],
+      "enable1": true,
+      "enable2": true,
+      "height": [
+       1.5
+      ],
+      "radius1": [
+       0.7
+      ],
+      "radius2": [
+       0.5
+      ],
+      "rings1": [
+       0
+      ],
+      "rings2": [
+       0
+      ],
+      "shape": {
+       "basis": [
+        "Linear",
+        "CatmullRom",
+        "Linear"
+       ],
+       "keys": [
+        0.0,
+        0.5,
+        1.0
+       ],
+       "values": [
+        0.0,
+        0.25,
+        0.0
+       ]
+      },
+      "tint": {
+       "basis": [
+        "Constant",
+        "Constant"
+       ],
+       "keys": [
+        0.0,
+        1.0
+       ],
+       "values": [
+        [
+         0.0,
+         1.0,
+         0.0
+        ],
+        [
+         0.9,
+         0.3,
+         0.1
+        ]
+       ]
+      }
+     }
+    }
+   ],
+   "type": "MESH"
+  },
+  "Rock and Groups": {
+   "groups": [
+    {
+     "attribute": "top_row",
+     "color": [
+      0.9,
+      0.2,
+      0.1
+     ],
+     "domain": "FACE",
+     "name": "top_row",
+     "show": true
+    },
+    {
+     "attribute": "corner",
+     "color": [
+      0.1,
+      0.3,
+      0.9
+     ],
+     "domain": "POINT",
+     "name": "corner",
+     "show": false
+    }
+   ],
+   "modifiers": [
+    {
+     "cache": null,
+     "hda": {
+      "label": "Bridge Rock",
+      "name": "Rock",
+      "node_type": "bridge::rock",
+      "path": "//../hda/bridge_test.hda"
+     },
+     "inputs": [
+      {
+       "is_self": true,
+       "label": "Input 1",
+       "object": null
+      }
+     ],
+     "parms": [
+      [
+       "height",
+       "float"
+      ],
+      [
+       "noise_size",
+       "float"
+      ],
+      [
+       "subdivisions",
+       "int"
+      ],
+      [
+       "effect",
+       "menu"
+      ],
+      [
+       "color",
+       "float"
+      ],
+      [
+       "smooth_normals",
+       "toggle"
+      ]
+     ],
+     "result": {
+      "faces": 576,
+      "points": 625
+     },
+     "settings": {
+      "cache_end": 100,
+      "cache_first": 0,
+      "cache_scene_range": true,
+      "cache_start": 1,
+      "instance_display": "AUTO",
+      "live": true,
+      "output_mode": "MESH",
+      "time_dependent": false,
+      "use_cache": false,
+      "visualize": "NONE"
+     },
+     "streams": {},
+     "values": {
+      "color": [
+       0.2,
+       0.45,
+       0.8
+      ],
+      "effect": "inflate",
+      "height": [
+       0.2
+      ],
+      "noise_size": [
+       0.9
+      ],
+      "smooth_normals": false,
+      "subdivisions": [
+       2
+      ]
+     }
+    },
+    {
+     "cache": null,
+     "hda": {
+      "label": "Bridge Groups",
+      "name": "Groups",
+      "node_type": "bridge::groups",
+      "path": "//../hda/bridge_test.hda"
+     },
+     "inputs": [
+      {
+       "is_self": true,
+       "label": "Input 1",
+       "object": null
+      }
+     ],
+     "parms": [
+      [
+       "group",
+       "string"
+      ],
+      [
+       "distance",
+       "float"
+      ]
+     ],
+     "result": {
+      "faces": 576,
+      "points": 625
+     },
+     "settings": {
+      "cache_end": 100,
+      "cache_first": 0,
+      "cache_scene_range": true,
+      "cache_start": 1,
+      "instance_display": "AUTO",
+      "live": true,
+      "output_mode": "NATIVE",
+      "time_dependent": false,
+      "use_cache": false,
+      "visualize": "height"
+     },
+     "streams": {},
+     "values": {
+      "distance": [
+       0.25
+      ],
+      "group": "top_row"
+     }
+    }
+   ],
+   "type": "MESH"
+  },
+  "Scatter": {
+   "groups": [],
+   "modifiers": [
+    {
+     "cache": null,
+     "hda": {
+      "label": "Bridge Scatter",
+      "name": "Scatter",
+      "node_type": "bridge::scatter",
+      "path": "//../hda/bridge_test.hda"
+     },
+     "inputs": [
+      {
+       "is_self": true,
+       "label": "Input 1",
+       "object": null
+      }
+     ],
+     "parms": [
+      [
+       "count",
+       "int"
+      ],
+      [
+       "seed",
+       "int"
+      ],
+      [
+       "size",
+       "float"
+      ],
+      [
+       "size_variation",
+       "float"
+      ],
+      [
+       "color_a",
+       "float"
+      ],
+      [
+       "color_b",
+       "float"
+      ],
+      [
+       "spheres",
+       "toggle"
+      ],
+      [
+       "animate",
+       "toggle"
+      ],
+      [
+       "spin",
+       "float"
+      ]
+     ],
+     "result": {
+      "faces": 0,
+      "points": 0
+     },
+     "settings": {
+      "cache_end": 100,
+      "cache_first": 0,
+      "cache_scene_range": true,
+      "cache_start": 1,
+      "instance_display": "POINTS",
+      "live": true,
+      "output_mode": "NATIVE",
+      "time_dependent": false,
+      "use_cache": false,
+      "visualize": "NONE"
+     },
+     "streams": {
+      "instances": 40,
+      "shapes": 3
+     },
+     "values": {
+      "animate": false,
+      "color_a": [
+       0.1,
+       0.9,
+       0.2
+      ],
+      "color_b": [
+       0.2,
+       0.5,
+       0.9
+      ],
+      "count": [
+       40
+      ],
+      "seed": [
+       1
+      ],
+      "size": [
+       0.1
+      ],
+      "size_variation": [
+       0.5
+      ],
+      "spheres": true,
+      "spin": [
+       2.0
+      ]
+     }
+    }
+   ],
+   "type": "MESH"
+  }
+ },
+ "version": "0.17.1"
+}

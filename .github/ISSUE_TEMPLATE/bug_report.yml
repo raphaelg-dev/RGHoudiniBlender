@@ -1,0 +1,44 @@
+name: Bug report
+description: Something the extension does wrong. Pull requests are read, but nothing guarantees they will be merged.
+labels: [bug]
+body:
+  - type: input
+    id: blender
+    attributes:
+      label: Blender version
+      description: Help > About Blender, for example 5.2.0.
+    validations:
+      required: true
+  - type: input
+    id: houdini
+    attributes:
+      label: Houdini version and licence
+      description: For example 22.0.429, Indie. The licence hython takes shows in Houdini's License Administrator.
+    validations:
+      required: true
+  - type: input
+    id: system
+    attributes:
+      label: Operating system
+      description: For example Windows 11 24H2.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: From a new file when you can, with the tool or HDA used. Say what you expected and what happened.
+      placeholder: |
+        1. Add a UV Sphere
+        2. Apply Mountain from the shelf
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Show Log
+      description: Houdini Bridge menu of the viewport header, Show Log, then paste the "Houdini Bridge Log" text from the Text Editor.
+      render: text
+    validations:
+      required: true

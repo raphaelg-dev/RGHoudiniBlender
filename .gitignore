@@ -1,0 +1,7 @@
+dist/
+__pycache__/
+*.pyc
+tests/screenshots/
+backup/
+*.blend1
+docs/images/live_edit.mp4

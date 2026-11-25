@@ -1,0 +1,25 @@
+schema_version = "1.0.0"
+
+id = "rg_houdini_bridge"
+version = "1.0.0"
+name = "RG Houdini Bridge"
+tagline = "Houdini HDAs and nodes as live, non-destructive modifiers"
+maintainer = "Raphaël Garcia <hello@raphaelgarcia.dev>"
+type = "add-on"
+tags = ["Modeling", "Pipeline"]
+
+blender_version_min = "5.2.0"
+# Exclusive: every 5.2.x, no 5.3. The modifier panel hangs on an internal panel of Blender
+# (MOD_PT_GeometryNodes) and avoids two of its crashes (ui/modifier_panel.py, PANEL_HEADER):
+# raise it only once the crash probes have run again on the new version.
+blender_version_max = "5.3.0"
+
+license = ["SPDX:GPL-3.0-or-later"]
+copyright = ["2026 Raphaël Garcia"]
+
+[permissions]
+files = "Reads HDA files and starts hython"
+network = "Talks to the hython server on 127.0.0.1"
+
+[build]
+paths_exclude_pattern = ["__pycache__/", "*.pyc"]

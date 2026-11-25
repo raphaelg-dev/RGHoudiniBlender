@@ -1,0 +1,48 @@
+# A tag v<version> builds the extension and publishes it as a GitHub release, with the
+# CHANGELOG section of that version as its notes. The tag must match the manifest's version.
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      BLENDER: blender-5.2.0-linux-x64
+    steps:
+      - uses: actions/checkout@v7
+      - name: Check the tag against the manifest
+        run: |
+          version=$(sed -n 's/^version = "\(.*\)"/\1/p' addon/blender_manifest.toml)
+          if [ "v$version" != "$GITHUB_REF_NAME" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match the manifest's version $version"
+            exit 1
+          fi
+          echo "VERSION=$version" >> "$GITHUB_ENV"
+      - name: Install the libraries Blender loads
+        run: sudo apt-get update && sudo apt-get install -y libxi6 libxxf86vm1 libxfixes3 libxrender1 libxkbcommon0 libsm6 libgl1 libegl1
+      - name: Download Blender 5.2
+        run: curl -fsSL "https://download.blender.org/release/Blender5.2/$BLENDER.tar.xz" | tar -xJ
+      - name: Build the extension
+        run: |
+          mkdir -p dist
+          cp LICENSE addon/LICENSE
+          "./$BLENDER/blender" --factory-startup --command extension build --source-dir addon --output-dir dist
+          "./$BLENDER/blender" --factory-startup --command extension validate "dist/rg_houdini_bridge-$VERSION.zip"
+      - name: Take the notes from the CHANGELOG
+        run: |
+          awk -v head="## $VERSION" '
+            index($0, head) == 1 { found = 1; next }
+            found && /^## / { exit }
+            found { print }
+          ' CHANGELOG.md > notes.md
+          test -s notes.md
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" "dist/rg_houdini_bridge-$VERSION.zip" --title "RG Houdini Bridge $VERSION" --notes-file notes.md --verify-tag

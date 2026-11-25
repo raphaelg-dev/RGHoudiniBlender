@@ -1,0 +1,12 @@
+# Text is stored with LF line endings; build.ps1 keeps CRLF, as Windows PowerShell expects.
+* text=auto
+*.ps1 text eol=crlf
+
+# Never diffed nor converted.
+*.blend binary
+*.hda binary
+*.png binary
+*.gif binary
+*.mp4 binary
+*.vdb binary
+*.zip binary

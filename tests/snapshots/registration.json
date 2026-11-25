@@ -1,0 +1,1367 @@
+{
+ "attached_properties": [
+  {
+   "fixed_type": "HoudiniBridgeSettings",
+   "identifier": "houdini_bridge",
+   "owner": "GeometryNodeTree",
+   "subtype": "NONE",
+   "type": "POINTER"
+  },
+  {
+   "default": 0,
+   "identifier": "houdini_bridge_group_index",
+   "owner": "Mesh",
+   "subtype": "NONE",
+   "type": "INT"
+  },
+  {
+   "fixed_type": "HoudiniBridgeGroup",
+   "identifier": "houdini_bridge_groups",
+   "owner": "Mesh",
+   "subtype": "NONE",
+   "type": "COLLECTION"
+  },
+  {
+   "default": "",
+   "identifier": "houdini_bridge_cuts",
+   "owner": "Object",
+   "subtype": "NONE",
+   "type": "STRING"
+  },
+  {
+   "default": false,
+   "identifier": "houdini_bridge_result",
+   "owner": "Object",
+   "subtype": "NONE",
+   "type": "BOOLEAN"
+  },
+  {
+   "default": "",
+   "identifier": "houdini_bridge_search",
+   "owner": "WindowManager",
+   "subtype": "NONE",
+   "type": "STRING"
+  },
+  {
+   "default": [
+    "SHELF"
+   ],
+   "flag": true,
+   "identifier": "houdini_bridge_tabs",
+   "items": [
+    "SHELF",
+    "MODIFIERS",
+    "GROUPS"
+   ],
+   "owner": "WindowManager",
+   "subtype": "NONE",
+   "type": "ENUM"
+  }
+ ],
+ "hotkeys": [
+  {
+   "alt": false,
+   "ctrl": true,
+   "key": "H",
+   "keymap": "3D View",
+   "operator": "wm.call_asset_shelf_popover",
+   "oskey": false,
+   "properties": {
+    "name": "HOUDINI_BRIDGE_AST_hdas"
+   },
+   "region_type": "WINDOW",
+   "shift": true,
+   "space_type": "VIEW_3D",
+   "value": "PRESS"
+  },
+  {
+   "alt": true,
+   "ctrl": false,
+   "key": "H",
+   "keymap": "3D View",
+   "operator": "wm.call_menu_pie",
+   "oskey": false,
+   "properties": {
+    "name": "HOUDINI_BRIDGE_MT_favorites_pie"
+   },
+   "region_type": "WINDOW",
+   "shift": true,
+   "space_type": "VIEW_3D",
+   "value": "PRESS"
+  }
+ ],
+ "interface": [
+  {
+   "bl_idname": "HOUDINI_BRIDGE_AST_hdas",
+   "bl_space_type": "VIEW_3D",
+   "class": "HOUDINI_BRIDGE_AST_hdas",
+   "kind": "asset_shelf"
+  },
+  {
+   "class": "HOUDINI_BRIDGE_UL_groups",
+   "kind": "list"
+  },
+  {
+   "class": "HOUDINI_BRIDGE_UL_result_groups",
+   "kind": "list"
+  },
+  {
+   "bl_idname": "HOUDINI_BRIDGE_MT_add",
+   "bl_label": "Houdini HDA",
+   "class": "HOUDINI_BRIDGE_MT_add",
+   "kind": "menu"
+  },
+  {
+   "bl_idname": "HOUDINI_BRIDGE_MT_favorites_pie",
+   "bl_label": "Houdini Favorites",
+   "class": "HOUDINI_BRIDGE_MT_favorites_pie",
+   "kind": "menu"
+  },
+  {
+   "bl_idname": "HOUDINI_BRIDGE_MT_modifier_add",
+   "bl_label": "Houdini",
+   "class": "HOUDINI_BRIDGE_MT_modifier_add",
+   "kind": "menu"
+  },
+  {
+   "bl_idname": "HOUDINI_BRIDGE_PT_modifier",
+   "bl_label": "",
+   "bl_region_type": "WINDOW",
+   "bl_space_type": "PROPERTIES",
+   "class": "HOUDINI_BRIDGE_PT_modifier",
+   "kind": "panel"
+  },
+  {
+   "bl_category": "Houdini",
+   "bl_idname": "HOUDINI_BRIDGE_PT_sidebar",
+   "bl_label": "RG Houdini Bridge",
+   "bl_region_type": "UI",
+   "bl_space_type": "VIEW_3D",
+   "class": "HOUDINI_BRIDGE_PT_sidebar",
+   "kind": "panel"
+  },
+  {
+   "bl_idname": "HOUDINI_BRIDGE_PT_status",
+   "bl_label": "Houdini",
+   "bl_region_type": "HEADER",
+   "bl_space_type": "VIEW_3D",
+   "class": "HOUDINI_BRIDGE_PT_status",
+   "kind": "panel"
+  }
+ ],
+ "operators": [
+  {
+   "bl_idname": "houdini_bridge.add_hda",
+   "bl_label": "Open HDA File",
+   "properties": [
+    {
+     "identifier": "filepath",
+     "type": "STRING"
+    },
+    {
+     "identifier": "filter_glob",
+     "type": "STRING"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.add_node",
+   "bl_label": "Add Houdini Node",
+   "properties": [
+    {
+     "identifier": "tool",
+     "type": "ENUM"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.allow_file",
+   "bl_label": "Allow Execution",
+   "properties": []
+  },
+  {
+   "bl_idname": "houdini_bridge.apply",
+   "bl_label": "Apply",
+   "properties": [
+    {
+     "identifier": "tree",
+     "type": "STRING"
+    },
+    {
+     "identifier": "with_above",
+     "type": "BOOLEAN"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.apply_all",
+   "bl_label": "Apply All",
+   "properties": [
+    {
+     "identifier": "object",
+     "type": "STRING"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.asset_apply",
+   "bl_label": "Apply HDA",
+   "properties": [
+    {
+     "identifier": "asset_library_type",
+     "type": "ENUM"
+    },
+    {
+     "identifier": "asset_library_identifier",
+     "type": "STRING"
+    },
+    {
+     "identifier": "relative_asset_identifier",
+     "type": "STRING"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.asset_drop",
+   "bl_label": "Drop HDA",
+   "properties": [
+    {
+     "identifier": "asset_library_type",
+     "type": "ENUM"
+    },
+    {
+     "identifier": "asset_library_identifier",
+     "type": "STRING"
+    },
+    {
+     "identifier": "relative_asset_identifier",
+     "type": "STRING"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.build_library",
+   "bl_label": "Build Asset Library",
+   "properties": []
+  },
+  {
+   "bl_idname": "houdini_bridge.bypass",
+   "bl_label": "Bypass",
+   "properties": [
+    {
+     "identifier": "tree",
+     "type": "STRING"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.cache",
+   "bl_label": "Cache Frames",
+   "properties": [
+    {
+     "identifier": "tree",
+     "type": "STRING"
+    },
+    {
+     "identifier": "action",
+     "type": "ENUM"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.choose_definition",
+   "bl_label": "Choose HDA",
+   "properties": [
+    {
+     "identifier": "node_type",
+     "type": "ENUM"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.display",
+   "bl_label": "Display Flag",
+   "properties": [
+    {
+     "identifier": "tree",
+     "type": "STRING"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.edit_code",
+   "bl_label": "Edit Code",
+   "properties": [
+    {
+     "identifier": "tree",
+     "type": "STRING"
+    },
+    {
+     "identifier": "parm",
+     "type": "STRING"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.folder",
+   "bl_label": "HDA Folder",
+   "properties": [
+    {
+     "identifier": "action",
+     "type": "ENUM"
+    },
+    {
+     "identifier": "index",
+     "type": "INT"
+    },
+    {
+     "identifier": "directory",
+     "type": "STRING"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.folder_tab",
+   "bl_label": "Folder Tab",
+   "properties": [
+    {
+     "identifier": "tree",
+     "type": "STRING"
+    },
+    {
+     "identifier": "path",
+     "type": "STRING"
+    },
+    {
+     "identifier": "tab_set",
+     "type": "STRING"
+    },
+    {
+     "identifier": "tab",
+     "type": "STRING"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.group_delete",
+   "bl_label": "Delete Group",
+   "properties": []
+  },
+  {
+   "bl_idname": "houdini_bridge.group_edit",
+   "bl_label": "Edit Group",
+   "properties": [
+    {
+     "identifier": "action",
+     "type": "ENUM"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.group_new",
+   "bl_label": "New Group",
+   "properties": [
+    {
+     "identifier": "name",
+     "type": "STRING"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.multiparm",
+   "bl_label": "Multiparm Instances",
+   "properties": [
+    {
+     "identifier": "tree",
+     "type": "STRING"
+    },
+    {
+     "identifier": "parm",
+     "type": "STRING"
+    },
+    {
+     "identifier": "step",
+     "type": "INT"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.open_folder",
+   "bl_label": "Open Folder",
+   "properties": [
+    {
+     "identifier": "path",
+     "type": "STRING"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.open_preferences",
+   "bl_label": "RG Houdini Bridge Preferences",
+   "properties": []
+  },
+  {
+   "bl_idname": "houdini_bridge.pick_group",
+   "bl_label": "Pick Group",
+   "properties": [
+    {
+     "identifier": "tree",
+     "type": "STRING"
+    },
+    {
+     "identifier": "parm",
+     "type": "STRING"
+    },
+    {
+     "identifier": "choice",
+     "type": "ENUM"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.press_button",
+   "bl_label": "Button",
+   "properties": [
+    {
+     "identifier": "tree",
+     "type": "STRING"
+    },
+    {
+     "identifier": "name",
+     "type": "STRING"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.recook",
+   "bl_label": "Recook",
+   "properties": [
+    {
+     "identifier": "tree",
+     "type": "STRING"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.refresh_shelf",
+   "bl_label": "Refresh Shelf",
+   "properties": []
+  },
+  {
+   "bl_idname": "houdini_bridge.select_group",
+   "bl_label": "Select Group in Viewport",
+   "properties": [
+    {
+     "identifier": "tree",
+     "type": "STRING"
+    },
+    {
+     "identifier": "parm",
+     "type": "STRING"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.server",
+   "bl_label": "Houdini Server",
+   "properties": [
+    {
+     "identifier": "action",
+     "type": "ENUM"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.server_log",
+   "bl_label": "Show Log",
+   "properties": []
+  },
+  {
+   "bl_idname": "houdini_bridge.show_parameters",
+   "bl_label": "Parameters",
+   "properties": [
+    {
+     "identifier": "tree",
+     "type": "STRING"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.sidebar_tab",
+   "bl_label": "Sidebar Tab",
+   "properties": [
+    {
+     "identifier": "key",
+     "type": "STRING"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.toggle_favorite",
+   "bl_label": "Favorite",
+   "properties": [
+    {
+     "identifier": "key",
+     "type": "STRING"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.tool",
+   "bl_label": "Houdini Tool",
+   "properties": [
+    {
+     "identifier": "key",
+     "type": "STRING"
+    },
+    {
+     "identifier": "target",
+     "type": "ENUM"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.upgrade",
+   "bl_label": "Update HDA Version",
+   "properties": [
+    {
+     "identifier": "tree",
+     "type": "STRING"
+    }
+   ]
+  },
+  {
+   "bl_idname": "houdini_bridge.use_houdini",
+   "bl_label": "Use This Houdini",
+   "properties": [
+    {
+     "identifier": "path",
+     "type": "STRING"
+    }
+   ]
+  }
+ ],
+ "preferences": [
+  {
+   "bl_idname_is_package": true,
+   "class": "HoudiniBridgePreferences",
+   "properties": [
+    {
+     "default": "",
+     "identifier": "bl_idname",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": "MODIFIERS",
+     "flag": false,
+     "identifier": "tab",
+     "items": [
+      "MODIFIERS",
+      "OUTPUT",
+      "SHELF",
+      "HOUDINI",
+      "VIEWPORT",
+      "HOTKEYS"
+     ],
+     "subtype": "NONE",
+     "type": "ENUM"
+    },
+    {
+     "default": "MODIFIER",
+     "flag": false,
+     "identifier": "default_target",
+     "items": [
+      "MODIFIER",
+      "NEW"
+     ],
+     "subtype": "NONE",
+     "type": "ENUM"
+    },
+    {
+     "default": true,
+     "identifier": "generator_at_cursor",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": true,
+     "identifier": "live_default",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": "NATIVE",
+     "flag": false,
+     "identifier": "default_output",
+     "items": [
+      "NATIVE",
+      "MESH"
+     ],
+     "subtype": "NONE",
+     "type": "ENUM"
+    },
+    {
+     "default": "LIVE",
+     "flag": false,
+     "identifier": "edit_mode_cook",
+     "items": [
+      "LIVE",
+      "ON_EXIT"
+     ],
+     "subtype": "NONE",
+     "type": "ENUM"
+    },
+    {
+     "default": "MINIMUM",
+     "flag": false,
+     "identifier": "parameter_limits",
+     "items": [
+      "STRICT",
+      "MINIMUM",
+      "RANGE"
+     ],
+     "subtype": "NONE",
+     "type": "ENUM"
+    },
+    {
+     "default": true,
+     "identifier": "houdini_interface",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": true,
+     "identifier": "follow_hide_when",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": false,
+     "identifier": "folders_open",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": true,
+     "identifier": "bring_back_extras",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": 200000,
+     "identifier": "points_above",
+     "subtype": "NONE",
+     "type": "INT"
+    },
+    {
+     "default": 4,
+     "identifier": "sphere_frequency",
+     "subtype": "NONE",
+     "type": "INT"
+    },
+    {
+     "default": 0.005,
+     "identifier": "curve_radius",
+     "subtype": "",
+     "type": "FLOAT"
+    },
+    {
+     "default": 0.02,
+     "identifier": "point_radius",
+     "subtype": "",
+     "type": "FLOAT"
+    },
+    {
+     "default": "",
+     "identifier": "live_volume_folder",
+     "subtype": "DIR_PATH",
+     "type": "STRING"
+    },
+    {
+     "default": "BESIDE",
+     "flag": false,
+     "identifier": "applied_volumes",
+     "items": [
+      "BESIDE",
+      "FOLDER"
+     ],
+     "subtype": "NONE",
+     "type": "ENUM"
+    },
+    {
+     "default": "houdini_volumes",
+     "identifier": "applied_folder_name",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": "",
+     "identifier": "applied_folder",
+     "subtype": "DIR_PATH",
+     "type": "STRING"
+    },
+    {
+     "default": true,
+     "identifier": "relative_volume_paths",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "fixed_type": "HoudiniBridgeFolder",
+     "identifier": "folders",
+     "subtype": "NONE",
+     "type": "COLLECTION"
+    },
+    {
+     "default": true,
+     "identifier": "include_packages",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": true,
+     "identifier": "include_native",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": false,
+     "identifier": "all_versions",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": "",
+     "identifier": "hidden_tools",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": true,
+     "identifier": "strip_labs_prefix",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": true,
+     "identifier": "group_by_category",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": true,
+     "identifier": "search_help",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": true,
+     "identifier": "refresh_on_start",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": 2,
+     "identifier": "catalog_depth",
+     "subtype": "NONE",
+     "type": "INT"
+    },
+    {
+     "default": "",
+     "identifier": "hython_path",
+     "subtype": "FILE_PATH",
+     "type": "STRING"
+    },
+    {
+     "default": false,
+     "identifier": "skip_packages",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": false,
+     "identifier": "start_with_blender",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": 0,
+     "identifier": "idle_minutes",
+     "subtype": "NONE",
+     "type": "INT"
+    },
+    {
+     "default": 180,
+     "identifier": "startup_timeout",
+     "subtype": "NONE",
+     "type": "INT"
+    },
+    {
+     "default": true,
+     "identifier": "show_feedback",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": true,
+     "identifier": "show_indicator",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": true,
+     "identifier": "show_legend",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    }
+   ]
+  }
+ ],
+ "property_groups": [
+  {
+   "class": "HoudiniBridgeFolder",
+   "properties": [
+    {
+     "default": "",
+     "identifier": "name",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": "",
+     "identifier": "path",
+     "subtype": "DIR_PATH",
+     "type": "STRING"
+    },
+    {
+     "default": true,
+     "identifier": "enabled",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    }
+   ]
+  },
+  {
+   "class": "HoudiniBridgeGroup",
+   "properties": [
+    {
+     "default": "",
+     "identifier": "name",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": "",
+     "identifier": "name",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": "",
+     "identifier": "attribute",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": "POINT",
+     "flag": false,
+     "identifier": "domain",
+     "items": [
+      "POINT",
+      "EDGE",
+      "FACE"
+     ],
+     "subtype": "NONE",
+     "type": "ENUM"
+    },
+    {
+     "default": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "identifier": "color",
+     "size": 3,
+     "subtype": "COLOR",
+     "type": "FLOAT"
+    },
+    {
+     "default": true,
+     "identifier": "show",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    }
+   ]
+  },
+  {
+   "class": "HoudiniBridgeInput",
+   "properties": [
+    {
+     "default": "",
+     "identifier": "name",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": "",
+     "identifier": "label",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "fixed_type": "Object",
+     "identifier": "object",
+     "subtype": "NONE",
+     "type": "POINTER"
+    },
+    {
+     "default": false,
+     "identifier": "is_self",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    }
+   ]
+  },
+  {
+   "class": "HoudiniBridgeParm",
+   "properties": [
+    {
+     "default": "",
+     "identifier": "name",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": "",
+     "identifier": "label",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": "",
+     "identifier": "folder",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": "",
+     "identifier": "folder_types",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": "",
+     "identifier": "help",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": "",
+     "identifier": "kind",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": 1,
+     "identifier": "size",
+     "subtype": "NONE",
+     "type": "INT"
+    },
+    {
+     "default": false,
+     "identifier": "is_color",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": false,
+     "identifier": "is_file",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": "",
+     "identifier": "editor",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": false,
+     "identifier": "hidden",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": false,
+     "identifier": "disabled",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": false,
+     "identifier": "expression",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": "",
+     "identifier": "menu_json",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": false,
+     "identifier": "toggle",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": "",
+     "identifier": "group_selection",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": "",
+     "identifier": "socket",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": false,
+     "identifier": "multiparm",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": "",
+     "identifier": "ramp",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": "",
+     "identifier": "node",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": "",
+     "identifier": "ramp_basis",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": false,
+     "identifier": "has_range",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": 0.0,
+     "identifier": "range_min",
+     "subtype": "NONE",
+     "type": "FLOAT"
+    },
+    {
+     "default": 0.0,
+     "identifier": "range_max",
+     "subtype": "NONE",
+     "type": "FLOAT"
+    },
+    {
+     "default": false,
+     "identifier": "min_strict",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": false,
+     "identifier": "max_strict",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": false,
+     "identifier": "min_fits",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": false,
+     "identifier": "max_fits",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    }
+   ]
+  },
+  {
+   "class": "HoudiniBridgeResultGroup",
+   "properties": [
+    {
+     "default": "",
+     "identifier": "name",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": "",
+     "identifier": "attribute",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": "",
+     "identifier": "domain",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": 0,
+     "identifier": "count",
+     "subtype": "NONE",
+     "type": "INT"
+    },
+    {
+     "default": [
+      0.0,
+      0.0,
+      0.0
+     ],
+     "identifier": "color",
+     "size": 3,
+     "subtype": "COLOR",
+     "type": "FLOAT"
+    },
+    {
+     "default": true,
+     "identifier": "show",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    }
+   ]
+  },
+  {
+   "class": "HoudiniBridgeSettings",
+   "properties": [
+    {
+     "default": "",
+     "identifier": "name",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": false,
+     "identifier": "enabled",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "fixed_type": "Object",
+     "identifier": "holder",
+     "subtype": "NONE",
+     "type": "POINTER"
+    },
+    {
+     "default": "",
+     "identifier": "path",
+     "subtype": "FILE_PATH",
+     "type": "STRING"
+    },
+    {
+     "default": "",
+     "identifier": "node_type",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": "",
+     "identifier": "label",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": true,
+     "identifier": "live",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "fixed_type": "HoudiniBridgeInput",
+     "identifier": "inputs",
+     "subtype": "NONE",
+     "type": "COLLECTION"
+    },
+    {
+     "fixed_type": "HoudiniBridgeParm",
+     "identifier": "parms",
+     "subtype": "NONE",
+     "type": "COLLECTION"
+    },
+    {
+     "default": "",
+     "identifier": "structure",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": "",
+     "identifier": "status",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": "",
+     "identifier": "errors",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": "",
+     "identifier": "timings",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": false,
+     "identifier": "time_dependent",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": false,
+     "identifier": "use_cache",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": true,
+     "identifier": "cache_scene_range",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    },
+    {
+     "default": 1,
+     "identifier": "cache_start",
+     "subtype": "NONE",
+     "type": "INT"
+    },
+    {
+     "default": 100,
+     "identifier": "cache_end",
+     "subtype": "NONE",
+     "type": "INT"
+    },
+    {
+     "fixed_type": "Collection",
+     "identifier": "cache_collection",
+     "subtype": "NONE",
+     "type": "POINTER"
+    },
+    {
+     "default": 0,
+     "identifier": "cache_first",
+     "subtype": "NONE",
+     "type": "INT"
+    },
+    {
+     "default": "",
+     "identifier": "cache_parms",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": "NATIVE",
+     "flag": false,
+     "identifier": "output_mode",
+     "items": [
+      "NATIVE",
+      "MESH"
+     ],
+     "subtype": "NONE",
+     "type": "ENUM"
+    },
+    {
+     "default": "AUTO",
+     "flag": false,
+     "identifier": "instance_display",
+     "items": [
+      "AUTO",
+      "INSTANCES",
+      "POINTS"
+     ],
+     "subtype": "NONE",
+     "type": "ENUM"
+    },
+    {
+     "fixed_type": "Object",
+     "identifier": "instances_holder",
+     "subtype": "NONE",
+     "type": "POINTER"
+    },
+    {
+     "fixed_type": "Collection",
+     "identifier": "prototypes",
+     "subtype": "NONE",
+     "type": "POINTER"
+    },
+    {
+     "fixed_type": "Object",
+     "identifier": "curves_holder",
+     "subtype": "NONE",
+     "type": "POINTER"
+    },
+    {
+     "fixed_type": "Object",
+     "identifier": "points_holder",
+     "subtype": "NONE",
+     "type": "POINTER"
+    },
+    {
+     "fixed_type": "Object",
+     "identifier": "volume_holder",
+     "subtype": "NONE",
+     "type": "POINTER"
+    },
+    {
+     "default": "",
+     "identifier": "streams_json",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "default": "",
+     "identifier": "outputs_json",
+     "subtype": "NONE",
+     "type": "STRING"
+    },
+    {
+     "fixed_type": "HoudiniBridgeResultGroup",
+     "identifier": "result_groups",
+     "subtype": "NONE",
+     "type": "COLLECTION"
+    },
+    {
+     "default": 0,
+     "identifier": "result_group_index",
+     "subtype": "NONE",
+     "type": "INT"
+    },
+    {
+     "default": "",
+     "flag": false,
+     "identifier": "visualize",
+     "subtype": "NONE",
+     "type": "ENUM"
+    },
+    {
+     "default": false,
+     "identifier": "template",
+     "subtype": "NONE",
+     "type": "BOOLEAN"
+    }
+   ]
+  }
+ ]
+}
